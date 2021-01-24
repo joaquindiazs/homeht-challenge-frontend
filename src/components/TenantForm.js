@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FormTenantDetails from './FormTenantDetails'
 import Confirm from './Confirm'
 import Success from './Success'
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 export class TenantForm extends Component {
     state = {
@@ -42,29 +43,45 @@ export class TenantForm extends Component {
         switch(step) {
             case 1:
                 return (
-                    <FormTenantDetails
-                        nextStep = { this.nextStep }
-                        handleChange = { this.handleChange }
-                        values = { values }
-                    />
+                    <div>
+                        <LinearProgress style={styles.progressBar} variant="determinate" value={step * 100 / 3} />
+                        <FormTenantDetails
+                            nextStep = { this.nextStep }
+                            handleChange = { this.handleChange }
+                            values = { values }
+                            />
+                    </div>
                 )
             case 2:
                 return (
-                    <Confirm
-                        nextStep = { this.nextStep }
-                        prevStep = { this.prevStep }
-                        handleChange = { this.handleChange }
-                        values = { values }
-                    />
+                    <div>
+                        <LinearProgress style={styles.progressBar} variant="determinate" value={step * 100 / 3} />
+                        <Confirm
+                            nextStep = { this.nextStep }
+                            prevStep = { this.prevStep }
+                            handleChange = { this.handleChange }
+                            values = { values }
+                        />
+                    </div>
                 )
             case 3:
                 return (
-                    <Success />
+                    <div>
+                        <LinearProgress style={styles.progressBar} variant="determinate" value={step * 100 / 3} />
+                        <Success />
+                    </div>
                 )
         }
         return (
             <div></div>
         )
+    }
+}
+
+const styles = {
+    progressBar: {
+        height: 15,
+        marginBottom: 10
     }
 }
 
