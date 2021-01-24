@@ -28,43 +28,45 @@ export class Confirm extends Component {
                             Confirm Tenant Data
                         </Toolbar>
                     </AppBar>
-                    <List>
-                        <ListItem>
-                            <ListItemText
-                                primary="First Name"
-                                secondary={ firstName }
-                                >
-                            </ListItemText>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary="Last Name"
-                                secondary={ lastName }
-                                >
-                            </ListItemText>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary="Email"
-                                secondary={ email }
-                                >
-                            </ListItemText>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary="Phone Number"
-                                secondary={ phoneNumber }
-                                >
-                            </ListItemText>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary="Salary"
-                                secondary={ salaryIndicator }
-                                >
-                            </ListItemText>
-                        </ListItem>
-                    </List>
+                    <div style={styles.list}>
+                        <List>
+                            <ListItem>
+                                <ListItemText
+                                    primary="First Name"
+                                    secondary={ firstName }
+                                    >
+                                </ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    primary="Last Name"
+                                    secondary={ lastName }
+                                    >
+                                </ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    primary="Email"
+                                    secondary={ email }
+                                    >
+                                </ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    primary="Phone Number"
+                                    secondary={ phoneNumber }
+                                    >
+                                </ListItemText>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText
+                                    primary="Salary"
+                                    secondary={ salaryIndicator }
+                                    >
+                                </ListItemText>
+                            </ListItem>
+                        </List>
+                    </div>
                     <Button
                         variant="contained" 
                         color="secondary"
@@ -90,6 +92,10 @@ export class Confirm extends Component {
 const styles = {
     button: {
         margin: 15
+    },
+    list: {
+        display: 'flex',
+        justifyContent: 'center',
     }
 }
 
