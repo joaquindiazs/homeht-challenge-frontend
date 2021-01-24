@@ -11,49 +11,32 @@ import Button from '@material-ui/core/Button'
 
 export class FormTenantDetails extends Component {
     state = {
-        validFirstName: false,
-        validLastName: false,
-        validEmail: false,
-        validPhoneNumber: false,
-        validSalary: false
+        isFormSubmitted: false,
+        isFormValid: true
     }
     
+    isFirstNameInvalid() {
+        return !this.props.values.firstName.length
+    }
+    isLastNameInvalid() {
+        return !this.props.values.lastName.length
+    }
+    isEmailInvalid() {
+        return !this.props.values.email.length
+    }
+    isPhoneNumberInvalid() {
+        return !this.props.values.phoneNumber.length
+    }
+    isSalaryInvalid() {
+        return !this.props.values.salaryIndicator.length
+    }
+
     continue = ev => {
         ev.preventDefault();
-        let valid = 0
-        if (this.props.values.firstName.length === 0) {
-            valid = 1
-            this.setState({
-                validFirstName: true
-            })
-        } 
-        if (this.props.values.lastName.length === 0) {
-            valid = 1
-            this.setState({
-                validLastName: true
-            })
-        }
-        if (this.props.values.email.length === 0) {
-            valid = 1
-            this.setState({
-                validEmail: true
-            })
-        }
-        if (this.props.values.phoneNumber.length === 0) {
-            valid = 1
-            this.setState({
-                validPhoneNumber: true
-            })
-        }
-        if (this.props.values.salaryIndicator.length === 0) {
-            valid = 1
-            this.setState({
-                validSalary: true
-            })
-        }
-        if (valid) {
-            return 
-        } else {
+        this.setState({
+            isFormSubmitted: true
+        })
+        if (!this.isSalaryInvalid() && !this.isPhoneNumberInvalid() && !this.isEmailInvalid() && !this.isFirstNameInvalid() && !this.isLastNameInvalid()) {
             this.props.nextStep();
         }
     }
@@ -73,7 +56,7 @@ export class FormTenantDetails extends Component {
                         label="Enter Your First Name" 
                         onChange={handleChange('firstName')}
                         defaultValue={values.firstName}
-                        error={this.state.validFirstName}
+                        error={this.isFirstNameInvalid() && this.state.isFormSubmitted}
                     />
                     <br/>
                     <TextField
@@ -81,7 +64,7 @@ export class FormTenantDetails extends Component {
                         label="Enter Your Last Name" 
                         onChange={handleChange('lastName')}
                         defaultValue={values.lastName}
-                        error={this.state.validLastName}
+                        error={this.isLastNameInvalid() && this.state.isFormSubmitted}
                     />
                     <br/>
                     <TextField
@@ -89,7 +72,7 @@ export class FormTenantDetails extends Component {
                         label="Enter Your Email" 
                         onChange={handleChange('email')}
                         defaultValue={values.email}
-                        error={this.state.validEmail}
+                        error={this.isEmailInvalid() && this.state.isFormSubmitted}
                     />
                     <br/>
                     <TextField
@@ -97,11 +80,11 @@ export class FormTenantDetails extends Component {
                         label="Enter Your Phone Number" 
                         onChange={handleChange('phoneNumber')}
                         defaultValue={values.phoneNumber}
-                        error={this.state.validPhoneNumber}
+                        error={this.isPhoneNumberInvalid() && this.state.isFormSubmitted}
                     />
                     <br/>
                     <br/>
-                    <FormLabel error={this.state.validSalary}>Salary Indication</FormLabel>
+                    <FormLabel error={this.isSalaryInvalid() && this.state.isFormSubmitted}>Salary Indication</FormLabel>
                     <RadioGroup style={styles.formGroup} aria-label="gender" name="customized-radios">
                         <FormControlLabel onChange={handleChange('salaryIndicator')} value="0 - 1.000" control={<Radio />} label="0 - 1.000" />
                         <FormControlLabel onChange={handleChange('salaryIndicator')} value="1.000 - 2.000" control={<Radio />} label="1.000 - 2.000" />
