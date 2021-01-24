@@ -10,7 +10,7 @@ export class Success extends Component {
                 <React.Fragment>
                     <AppBar position="static">
                         <Toolbar>
-                            <h1>Successful search</h1>
+                            <h1>Successful submit</h1>
                         </Toolbar>
                     </AppBar>
                 </React.Fragment>
